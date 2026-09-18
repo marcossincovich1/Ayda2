@@ -1,0 +1,13 @@
+# Ignorar archivos sin extensión (ejecutables compilados en Linux)
+*
+!*/
+!*.*
+
+# Archivos sin extensión que sí queremos rastrear si existieran
+!Makefile
+!README
+
+# Ignorar archivos específicos con extensión
+*.pdf
+*.o
+*.out

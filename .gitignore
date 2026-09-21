@@ -5,10 +5,11 @@
 
 # Archivos sin extensión que sí queremos rastrear si existieran
 !Makefile
-!README
 
 # Ignorar archivos específicos con extensión
 *.pdf
 *.o
 *.out
 *.md
+!README.md
+!Archivos_MD/TP1Grafos.md

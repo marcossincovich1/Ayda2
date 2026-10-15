@@ -8,10 +8,12 @@
 #include <algorithm>
 #include "../TDAGrafo/HPPs/Grafo.hpp"
 
+using namespace std;
+
 // Función auxiliar para representar infinito de forma segura para cualquier tipo C
 template <typename C>
 C dijkstra_infinito() {
-    return std::numeric_limits<C>::max();
+    return numeric_limits<C>::max();
 }
 
 /**
@@ -28,8 +30,8 @@ C dijkstra_infinito() {
  */
 template <typename C>
 void dijkstra(const Grafo<C>& g, int origen, 
-              std::unordered_map<int, C>& distancias, 
-              std::unordered_map<int, int>& predecesores) {
+              unordered_map<int, C>& distancias, 
+              unordered_map<int, int>& predecesores) {
     
     const C INF = dijkstra_infinito<C>();
 
@@ -40,13 +42,11 @@ void dijkstra(const Grafo<C>& g, int origen,
 
     distancias[origen] = 0;
 
-    std::priority_queue<std::pair<C, int>, 
-                        std::vector<std::pair<C, int>>, 
-                        std::greater<std::pair<C, int>>> pq;
+    priority_queue<pair<C, int>, vector<pair<C, int>>, greater<pair<C, int>>> pq;
     pq.push({0, origen});
 
     while (!pq.empty()) {
-        std::pair<C, int> tope = pq.top();
+        pair<C, int> tope = pq.top();
         pq.pop();
 
         C dist_u = tope.first;
@@ -76,8 +76,8 @@ void dijkstra(const Grafo<C>& g, int origen,
  * @return vector con los vértices en orden secuencial (origen -> ... -> destino).
  *         Retorna un vector vacío si el destino no es alcanzable desde el origen.
  */
-inline std::vector<int> reconstruirCaminoDijkstra(int origen, int destino, const std::unordered_map<int, int>& predecesores) {
-    std::vector<int> camino;
+inline vector<int> reconstruirCaminoDijkstra(int origen, int destino, const std::unordered_map<int, int>& predecesores) {
+    vector<int> camino;
 
     if (predecesores.find(destino) == predecesores.end() || 
         (destino != origen && predecesores.at(destino) == -1)) {
@@ -93,7 +93,7 @@ inline std::vector<int> reconstruirCaminoDijkstra(int origen, int destino, const
         actual = predecesores.at(actual);
     }
 
-    std::reverse(camino.begin(), camino.end());
+    reverse(camino.begin(), camino.end());
 
     if (camino.empty() || camino.front() != origen) {
         return {};
